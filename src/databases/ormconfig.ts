@@ -13,4 +13,7 @@ export const connectionSource = new DataSource({
   name: 'default',
   entities: ['src/**/**.entity.ts'],
   migrations: ['src/databases/migrations/**/*{.ts,.js}'],
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
