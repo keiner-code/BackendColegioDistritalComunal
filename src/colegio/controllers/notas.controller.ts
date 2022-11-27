@@ -32,7 +32,8 @@ export class NotasController {
   getOne(@Param('id', ParseIntPipe) id: number) {
     return this.notaService.findOne(id);
   }
-  @Roles(Role.DIRECTOR, Role.PROFESOR)
+  //@Roles(Role.DIRECTOR, Role.PROFESOR)
+  @Public()
   @Post()
   postCreate(@Body() payload: CreateNotasDto) {
     return this.notaService.create(payload);
