@@ -27,17 +27,25 @@ export class UsersController {
   getAll() {
     return this.userService.findAll();
   }
-  @Public()
-  @Get('root')
-  getRoot() {
-    return this.userService.findAll();
-  }
 
   @Roles(Role.DIRECTOR, Role.PROFESOR)
   @Get(':id')
   getOne(@Param('id', ParseIntPipe) id: number) {
     return this.userService.findOne(id);
   }
+
+  @Public()
+  @Get('root')
+  getRoot() {
+    return this.userService.findAll();
+  }
+
+  @Public()
+  @Get('find/:email')
+  getOneEmail(@Param('email') email: string) {
+    return this.userService.findOneByEmail(email);
+  }
+
   @Public()
   @Post()
   postCreate(@Body() payload: CreateTUserDto) {
