@@ -23,6 +23,11 @@ export class UsersService {
   findOneByEmail(email: string) {
     return this.user.findOne({ where: { email } });
   }
+
+  findOneByCedula(cedula: number) {
+    return this.user.findOne({ where: { cedula } });
+  }
+
   async create(payload: CreateTUserDto): Promise<User> {
     const newUser = this.user.create(payload);
     if (payload.notasId) {
