@@ -27,7 +27,7 @@ export class UsersService {
   findOneByCedula(cedula: number) {
     return this.user.findOne({
       where: { cedula },
-      relations: ['notas'],
+      relations: ['notas', 'materia'],
     });
   }
 
