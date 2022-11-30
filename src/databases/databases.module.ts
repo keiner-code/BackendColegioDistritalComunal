@@ -20,9 +20,9 @@ import { ConfigType } from '@nestjs/config';
           url: configService.postgreUrl,
           synchronize: false,
           autoLoadEntities: true,
-          /* ssl: {
+          ssl: {
             rejectUnauthorized: false,
-          }, */
+          },
         };
       },
     }),
