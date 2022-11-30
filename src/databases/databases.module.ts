@@ -9,14 +9,14 @@ import { ConfigType } from '@nestjs/config';
     TypeOrmModule.forRootAsync({
       inject: [config.KEY],
       useFactory: (configService: ConfigType<typeof config>) => {
-        const { user, host, dbName, password, port } = configService.postgres;
+        //const { user, host, dbName, password, port } = configService.postgres;
         return {
           type: 'postgres',
-          host,
+          /*  host,
           port,
           username: user,
           password,
-          database: dbName,
+          database: dbName, */
           url: configService.postgreUrl,
           synchronize: false,
           autoLoadEntities: true,
