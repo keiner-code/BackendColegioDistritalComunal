@@ -28,28 +28,28 @@ export class UsersController {
     return this.userService.findAll();
   }
 
-  @Roles(Role.DIRECTOR, Role.PROFESOR)
-  @Get(':id')
-  getOne(@Param('id', ParseIntPipe) id: number) {
-    return this.userService.findOne(id);
-  }
-
   @Public()
-  @Get('root')
+  @Get('/root')
   getRoot() {
     return this.userService.findAll();
   }
 
   @Public()
-  @Get('find/:email')
+  @Get('/find/:email')
   getOneEmail(@Param('email') email: string) {
     return this.userService.findOneByEmail(email);
   }
 
   @Roles(Role.DIRECTOR, Role.PROFESOR)
-  @Get('find/:cedula')
+  @Get('/search/:cedula')
   getOneCedula(@Param('cedula', ParseIntPipe) cedula: number) {
     return this.userService.findOneByCedula(cedula);
+  }
+
+  @Roles(Role.DIRECTOR, Role.PROFESOR)
+  @Get('/:id')
+  getOne(@Param('id', ParseIntPipe) id: number) {
+    return this.userService.findOne(id);
   }
 
   @Public()
