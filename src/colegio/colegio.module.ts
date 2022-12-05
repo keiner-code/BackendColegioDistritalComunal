@@ -16,6 +16,7 @@ import { MateriaController } from './controllers/materia.controller';
 import { Materia } from './entities/materia.entity';
 import { User } from 'src/users/entities/users.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersService } from '../users/services/users.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Notas, Curso, Horario, Materia, User])],
@@ -26,6 +27,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     HorarioController,
     MateriaController,
   ],
-  providers: [HorarioService, CursosService, NotasService, MateriaService],
+  providers: [
+    HorarioService,
+    CursosService,
+    NotasService,
+    MateriaService,
+    UsersService,
+  ],
 })
 export class ColegioModule {}

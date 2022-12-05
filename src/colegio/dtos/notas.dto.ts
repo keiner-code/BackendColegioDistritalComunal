@@ -13,6 +13,10 @@ export class CreateNotasDto {
   @IsNumber()
   @IsNotEmpty()
   readonly nota3: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  readonly userId: number;
 }
 
 export class UpdateNotasDto extends PartialType(CreateNotasDto) {}

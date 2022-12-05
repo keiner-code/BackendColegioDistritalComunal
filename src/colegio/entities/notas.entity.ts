@@ -4,7 +4,7 @@ import {
   Entity,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
+  ManyToOne,
 } from 'typeorm';
 import { User } from '../../users/entities/users.entity';
 
@@ -22,7 +22,7 @@ export class Notas {
   @Column({ type: 'int' })
   nota3: number;
 
-  @OneToOne(() => User, (user) => user.notas, { nullable: true })
+  @ManyToOne(() => User, (user) => user.notas, { nullable: true })
   user: User;
 
   @CreateDateColumn({

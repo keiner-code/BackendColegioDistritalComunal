@@ -1,15 +1,15 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { User } from '../entities/users.entity';
+import { Notas } from '../../colegio/entities/notas.entity';
 import { CreateTUserDto, UpdateUsersDto } from '../dtos/users.dto';
-import { NotasService } from '../../colegio/services/notas.service';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User) private user: Repository<User>,
-    private notasService: NotasService,
+    @InjectRepository(Notas) private notasrepo: Repository<Notas>,
   ) {}
   findAll(): Promise<User[]> {
     return this.user.find();
@@ -27,16 +27,18 @@ export class UsersService {
   findOneByCedula(cedula: number) {
     return this.user.findOne({
       where: { cedula },
-      relations: ['notas', 'materia'],
+      relations: ['notas', 'materia.horario.curso'],
     });
   }
 
   async create(payload: CreateTUserDto): Promise<User> {
     const newUser = this.user.create(payload);
+    /* console.log(payload);
     if (payload.notasId) {
-      const notas = await this.notasService.findOne(payload.notasId);
-      newUser.notas = notas;
-    }
+      const id = payload.notasId;
+      const notas = await this.notasrepo.findOne({ where: { id } });
+      newUser.notasId = notas;
+    } */
     return this.user.save(newUser);
   }
   async update(id: number, changes: UpdateUsersDto): Promise<User | []> {

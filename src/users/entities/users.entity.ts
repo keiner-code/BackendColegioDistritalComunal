@@ -5,8 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToMany,
-  OneToOne,
-  JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { Materia } from '../../colegio/entities/materia.entity';
 import { Notas } from '../../colegio/entities/notas.entity';
@@ -34,9 +33,8 @@ export class User {
   @Column({ type: 'varchar', length: '255' })
   rol: string;
 
-  @OneToOne(() => Notas, (notas) => notas.user, { nullable: true })
-  @JoinColumn()
-  notas: Notas;
+  @OneToMany(() => Notas, (notas) => notas.user, { nullable: true })
+  notas: Notas[];
 
   @ManyToMany(() => Materia, (materia) => materia.user)
   materia: Materia[];

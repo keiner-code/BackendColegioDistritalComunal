@@ -16,14 +16,12 @@ export class MateriaService {
   ) {}
 
   findall() {
-    return this.injectHorario.find({
-      relations: ['notas'],
-    });
+    return this.injectHorario.find();
   }
   findOne(id: number) {
     return this.injectHorario.findOne({
       where: { id },
-      relations: ['notas', 'horario.curso', 'user'],
+      relations: ['horario.curso', 'user'],
     });
   }
   async create(data: CreateMateriaDto) {
@@ -33,7 +31,6 @@ export class MateriaService {
       const user = await this.userRepo.findBy({
         id: In(data.userIds),
       });
-      console.log(user);
       newUser.user = user;
     }
 

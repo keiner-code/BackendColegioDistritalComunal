@@ -40,7 +40,7 @@ export class UsersController {
     return this.userService.findOneByEmail(email);
   }
 
-  @Roles(Role.DIRECTOR, Role.PROFESOR)
+  @Public()
   @Get('/search/:cedula')
   getOneCedula(@Param('cedula', ParseIntPipe) cedula: number) {
     return this.userService.findOneByCedula(cedula);

@@ -25,10 +25,6 @@ export class CreateTUserDto {
   @IsString()
   @IsNotEmpty()
   readonly rol: string;
-
-  @IsNumber()
-  @IsNotEmpty()
-  readonly notasId: number;
 }
 
 export class UpdateUsersDto extends PartialType(CreateTUserDto) {}
