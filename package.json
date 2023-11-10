@@ -19,10 +19,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-
     "typeorm:prod": "typeorm-ts-node-commonjs migration:run -d ./src/databases/ormconfig.ts",
     "migrations:prod": "npm run typeorm:prod ",
-
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "migrations:generate": "npm run typeorm -- migration:generate -d ./src/databases/ormconfig.ts",
     "migrations:run": "npm run typeorm -- migration:run -d ./src/databases/ormconfig.ts",
@@ -37,6 +35,7 @@
     "@nestjs/mapped-types": "^1.2.0",
     "@nestjs/passport": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/swagger": "^7.1.15",
     "@nestjs/typeorm": "^9.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
@@ -48,8 +47,8 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "ts-node": "^10.0.0",
-    "typescript": "^4.7.4",
-    "typeorm": "^0.3.10"
+    "typeorm": "^0.3.10",
+    "typescript": "^4.7.4"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
